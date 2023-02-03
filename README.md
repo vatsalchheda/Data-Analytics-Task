@@ -57,8 +57,12 @@ GROUP BY MONTH(r.PURCHASE_DATE)
 
 ## Task 3: Choose something noteworthy about the data and share with a non-technical stakeholder
 
-### FINDINGS
+### FINDINGS: To gain insights from the dataset, I utilized Tableau to create an interactive dashboard after removing all the null values. By doing this, I was able to uncover several interesting correlations:
 
-#### 1.
 
-#### 2.
+#### 1. The "Category Type Receipt Count for Different Months" sheet, which uses a packed bubbles chart, displays the count of each category type for a selected month. By selecting all months, it becomes evident that the Beverages category consistently leads in terms of receipt count, while the Beauty & Personal Care category has the lowest number of receipts. This can be clearly seen through the color gradient, where dark blue represents the highest number of receipt counts, and the color gradually changes to light blue for the categories with the lowest number of receipt counts.
+
+
+#### 2. The "States vs Users" map in the interactive dashboard provides insight into which state in the USA has the highest and lowest number of users for the selected month. The month can be easily changed to fit the needs of the analysis. Through the color gradient, which ranges from dark blue (representing the highest number of users) to light blue (representing the lowest number of users), we can see that the state of Florida has the largest number of users, closely followed by New York. On the other hand, states such as Washington, Nevada, and North Dakota have the least number of users.
+
+![Tableau Dashboard](https://github.com/vatsalchheda/FetchRewards-DataAnalytics/blob/main/Findings.jpg)
