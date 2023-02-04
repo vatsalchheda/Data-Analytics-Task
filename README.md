@@ -10,11 +10,11 @@
 
 ```
 SELECT B.NAME
-FROM Brands B JOIN Receipt_Items Ri ON (B.BARCODE = Ri.BARCODE) JOIN Receipts as R ON (Ri.Reward_Reciept_Id = R.ID)
-WHERE MONTH(R.Purchase_Date) = 6
+FROM brands B JOIN receipt_items Ri ON (B.BARCODE = Ri.BARCODE) JOIN receipts as R ON (Ri.REWARDS_RECEIPT_ID = R.ID)
+WHERE MONTH(R.PURCHASE_DATE) = 6
 GROUP BY B.NAME
-ORDER BY SUM(Ri.Total_Final_Price)
-LIMIT 1
+ORDER BY SUM(Ri.TOTAL_FINAL_PRICE)
+LIMIT 1;
 
 ```
 
@@ -22,37 +22,37 @@ LIMIT 1
 
 ```
 SELECT u.ID
-FROM USERS u JOIN RECIEPTS R r ON (u.ID=r.USER_ID)
-WHERE MONTH(R.Purchase_Date) = 8
+FROM users u JOIN receipts r ON (u.ID=r.USER_ID)
+WHERE MONTH(R.PURCHASE_DATE) = 8
 GROUP BY u.ID
-ORDER BY SUM(r.TOTAL_SPENT) DESC
-LIMIT 1
+ORDER BY SUM(r.TOTAL_SPENT) DESC
+LIMIT 1;
 ```
 
 ### 3. What user bought the most expensive item?
 
 ```
 SELECT u.ID
-FROM USERS u JOIN RECIEPTS r ON (u.ID=r.USER_ID) JOIN RECIEPT_ITEMS ri ON (r.ID=ri.REWARDS_RECEIPT_ID)
-ORDER BY CAST((ri.TOTAL_SPENT/ri.QTY) as DECIMAL(7,2))
+FROM users u JOIN receipts r ON (u.ID=r.USER_ID) JOIN receipt_items ri ON (r.ID=ri.REWARDS_RECEIPT_ID)
+ORDER BY ri.TOTAL_FINAL_PRICE/ri.QUANTITY_PURCHASED
 LIMIT 1
 ```
 
 ### 4. What is the name of the most expensive item purchased?
 
 ```
-SELEC ri.DESCRIPTION
-FROM reciept_items ri
-ORDER BY CAST((ri.TOTAL_SPENT/ri.QTY) as DECIMAL(7,2)) DESC
-LIMIT 1
+SELECT ri.DESCRIPTION 
+FROM receipt_items ri 
+ORDER BY ri.TOTAL_FINAL_PRICE/ri.QUANTITY_PURCHASED DESC 
+LIMIT 1;
 ```
 
 ### 5. How many users scanned in each month?
 
 ```
-SELECT MONTH(r.PURCHASE_DATE), COUNT(r.USER_ID)
-FROM reciepts r
-GROUP BY MONTH(r.PURCHASE_DATE)
+SELECT MONTH(r.DATE_SCANNED), COUNT( DISTINCT r.USER_ID) 
+FROM receipts r 
+GROUP BY MONTH(r.DATE_SCANNED);
 ```
 
 ## Task 3: Choose something noteworthy about the data and share with a non-technical stakeholder
